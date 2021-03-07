@@ -1,4 +1,4 @@
-package com.zyccx.wc;
+package com.zyccx.wc.v1;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
