@@ -1,4 +1,5 @@
-package com.zyccx.wc.v2;
+package com.zyccx.combineTextInputFormat;
+
 
 import com.zyccx.wc.v1.WordCountMapper;
 import com.zyccx.wc.v1.WordCountReducer;
@@ -7,6 +8,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.lib.input.CombineTextInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.Tool;
@@ -14,23 +16,15 @@ import org.apache.hadoop.util.ToolRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 public class WordCountDriver extends Configured implements Tool {
 
     Logger logger = LoggerFactory.getLogger(WordCountDriver.class);
 
     @Override
     public int run(String[] args) throws Exception {
-        // 获取系统参数
-        if (args.length != 2) {
-            logger.error("Usage: %s [generic option] <input> <output> \n",
-                    getClass().getSimpleName());
-            ToolRunner.printGenericCommandUsage(System.err);
-            return -1;
-        }
 
         // 1、声明 Job和配置Job
-        final Job job = Job.getInstance(getConf(), "Word Count Tool");
+        final Job job = Job.getInstance(getConf(), "Word Count Tool combine");
 
         // 2、设置 jar
         job.setJarByClass(getClass());
@@ -47,9 +41,13 @@ public class WordCountDriver extends Configured implements Tool {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
 
+        job.setInputFormatClass(CombineTextInputFormat.class);
+        CombineTextInputFormat.setMaxInputSplitSize(job,4194304);
+
         // 6、设置输入和输出的路径
-        FileInputFormat.setInputPaths(job, new Path(args[0]));
-        FileOutputFormat.setOutputPath(job, new Path(args[1]));
+        FileInputFormat.setInputPaths(job, new Path("E:\\hadoop\\combine"));
+        FileOutputFormat.setOutputPath(job, new Path("E:\\hadoop\\output-combine-1"));
+
 
         // 7、提交任务
         return job.waitForCompletion(true) ? 0 : 1;

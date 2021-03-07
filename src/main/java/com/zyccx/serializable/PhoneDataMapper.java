@@ -19,7 +19,8 @@ public class PhoneDataMapper extends Mapper<LongWritable, Text, Text, PhoneDataW
         final String strValue = value.toString();
         final String[] dataArr = strValue.split("\t");
 
-        if (dataArr.length != 6) {
+        if (dataArr.length != 7
+        ) {
             LOGGER.error("Data length is not enough:{}", strValue);
         }
         Long upLoad = Long.valueOf(dataArr[4]);
