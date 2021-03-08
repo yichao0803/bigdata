@@ -45,9 +45,8 @@ public class WordCountDriver extends Configured implements Tool {
         CombineTextInputFormat.setMaxInputSplitSize(job,4194304);
 
         // 6、设置输入和输出的路径
-        FileInputFormat.setInputPaths(job, new Path("E:\\hadoop\\combine"));
-        FileOutputFormat.setOutputPath(job, new Path("E:\\hadoop\\output-combine-1"));
-
+        FileInputFormat.setInputPaths(job, new Path("E:\\hadoop\\combine\\input"));
+        FileOutputFormat.setOutputPath(job, new Path("E:\\hadoop\\output-combine-5"));
 
         // 7、提交任务
         return job.waitForCompletion(true) ? 0 : 1;
