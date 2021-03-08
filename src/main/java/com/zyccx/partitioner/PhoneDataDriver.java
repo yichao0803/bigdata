@@ -31,11 +31,12 @@ public class PhoneDataDriver extends Configured implements Tool {
         job.setOutputValueClass(PhoneDataWritable.class);
 
         // 设置 partition
-        job.setNumReduceTasks(2);
+        job.setPartitionerClass(CustomerPhonePartitioner.class);
+        job.setNumReduceTasks(5);
 
         // 设置输入路径和输出路径
         FileInputFormat.setInputPaths(job, new Path("E:\\hadoop\\serializable\\input"));
-        FileOutputFormat.setOutputPath(job, new Path("E:\\hadoop\\partitioner\\output"));
+        FileOutputFormat.setOutputPath(job, new Path("E:\\hadoop\\output-partitioner-5"));
         // 提交任务
         return job.waitForCompletion(true) ? 0 : 1;
     }
