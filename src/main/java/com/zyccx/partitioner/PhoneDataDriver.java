@@ -36,7 +36,7 @@ public class PhoneDataDriver extends Configured implements Tool {
 
         // 设置输入路径和输出路径
         FileInputFormat.setInputPaths(job, new Path("E:\\hadoop\\serializable\\input"));
-        FileOutputFormat.setOutputPath(job, new Path("E:\\hadoop\\output-partitioner-5"));
+        FileOutputFormat.setOutputPath(job, new Path("E:\\hadoop\\output-partitioner-6"));
         // 提交任务
         return job.waitForCompletion(true) ? 0 : 1;
     }

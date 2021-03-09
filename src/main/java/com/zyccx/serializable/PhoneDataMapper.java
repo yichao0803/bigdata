@@ -29,7 +29,7 @@ public class PhoneDataMapper extends Mapper<LongWritable, Text, Text, PhoneDataW
         outKey.set(dataArr[1]);
         outValue.setUpLoad(upLoad);
         outValue.setDownLoad(downLoad);
-        outValue.setAllLoad(upLoad + downLoad);
+        outValue.setAllLoad();
 
         context.write(outKey, outValue);
     }
