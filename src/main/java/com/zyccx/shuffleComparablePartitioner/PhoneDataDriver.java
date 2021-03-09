@@ -11,7 +11,6 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
-import org.apache.hadoop.yarn.webapp.hamlet.Hamlet;
 
 public class PhoneDataDriver extends Configured implements Tool {
     @Override
