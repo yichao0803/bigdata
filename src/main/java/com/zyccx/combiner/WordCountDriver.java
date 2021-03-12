@@ -42,7 +42,7 @@ public class WordCountDriver extends Configured implements Tool {
 
         // 6、设置输入和输出的路径
         FileInputFormat.setInputPaths(job, new Path("E:\\hadoop\\wordCount\\input"));
-        FileOutputFormat.setOutputPath(job, new Path("E:\\hadoop\\output-combiner-2"));
+        FileOutputFormat.setOutputPath(job, new Path("E:\\hadoop\\output-combiner-3"));
 
         // 7、提交任务
         return job.waitForCompletion(true) ? 0 : 1;
